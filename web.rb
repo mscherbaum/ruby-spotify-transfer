@@ -1,11 +1,11 @@
 require 'sinatra'
 require 'rspotify'
+RSpotify.authenticate(ENV['SPOTIFY_CLIENTID'],ENV['SPOTIFY_SECRET'])
 
-artists = RSpotify::Artist.search('Arctic Monkeys')
-
-arctic_monkeys = artists.first
+/Search by Artist - Album Name/
+albums = RSpotify::Album.search('Gossip - A Joyful Noise')
 
 
 get '/' do
-  "Hello, world #{arctic_monkeys}"
+  "Hello, world #{albums}"
 end
