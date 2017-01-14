@@ -22,8 +22,9 @@ class AlbumsController < ApplicationController
 
   def search
   	query = params[:message]
-  	@submission = Array.new
-  	@submission.push(query)
+  	unless query.nil? || @submission == ["some text"]
+  		@submission = query.split("\n")
+  	end
   end
 
   def auth_hash
