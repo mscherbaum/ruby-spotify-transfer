@@ -15,6 +15,7 @@ You have saved the following albums (<%= @albums.size %>):
 <p>
 	<%= form_tag({controller: "albums", action: "search"}, method: :post) do %>
   		<%= text_area_tag(:message, "e.g. Gossip - A Joyful Noise", size: "24x6") %>
+		<%= content_tag(:button, "Submit", :type=>:submit)%>
 	<% end %>
 </p>
 
