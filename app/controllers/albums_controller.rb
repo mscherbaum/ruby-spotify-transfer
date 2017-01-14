@@ -22,8 +22,10 @@ class AlbumsController < ApplicationController
 
   def search
   	query = params[:message]
-  	unless query.nil? || @submission == ["some text"]
+  	unless query.nil?
   		@submission = query.split("\n")
+  	else
+  		@submission == ["some text"]
   	end
   end
 
