@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-   root 'welcome#index'
-   get '/auth/:spotify' as: :authenticate
-   get '/auth/:spotify/callback', to: 'albums#show'
+  root 'welcome#index'
+   #get '/auth/:spotify'  as: :authenticate
+  get '/auth/:spotify/callback' => 'albums#show'
+  get 'auth/failure' => redirect('/')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
