@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
   	@name = @spotify_user.display_name
   	@albums = @spotify_user.saved_albums
   	#@albums = RSpotify::Album.search('Gossip - A Joyful Noise')
-    #@album = albums.first
+    @album = albums.first
   end
 
   protected
