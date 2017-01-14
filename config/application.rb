@@ -8,9 +8,8 @@ Bundler.require(*Rails.groups)
 
 module RubySpotifyTransfer
   class Application < Rails::Application
-    RSpotify.authenticate(ENV['SPOTIFY_CLIENTID'],ENV['SPOTIFY_SECRET'])
-    use Rack::Session::Cookie
-    use OmniAuth::Strategies::Developer
+    RSpotify.authenticate(ENV['SPOTIFY_CLIENTID'],ENV['SPOTIFY_SECRET'])    
+    OmniAuth.config.logger = Rails.logger
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
