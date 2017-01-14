@@ -22,11 +22,13 @@ class AlbumsController < ApplicationController
 
   def search
   	query = params[:message]
+  	logger.debug "this is the query object: " + query.to_s
   	unless query.nil?
   		@submission = query.split("\n")
   	else
   		@submission == ["some text"]
   	end
+  	logger.debug "This is the @submiision object: #{@submission.inspect}"
   end
 
   def auth_hash
