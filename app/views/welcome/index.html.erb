@@ -3,4 +3,6 @@
   The time is now: <%= Time.now %>
 </p>
 
+<%= button_to "Authenticate", { :action => "albums#show" }, :method => :get %>
+<%= button_to "Authenticate here", authenticate_path %>
 <%= link_to '<button type="button">Authenticate with Spotify</button>'.html_safe, authenticate_path %>
