@@ -7,13 +7,13 @@
 You have saved the following albums (<%= @albums.size %>):
 <% @albums.each do |album| %>
 <li><%=  album.name %> - <%=  album.artists.to_s %></li>
-
+<% end %>
 </p>
 <br></br>
 You have saved the following Playlists (<%= @playlists.size %>):
 <% @playlists.each do |playlist| %>
 <li><%=  playlist.name %></li>
+<% end %>
 <p>
 
 
-<% end %>
