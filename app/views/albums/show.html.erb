@@ -5,10 +5,19 @@
 <p>
 <br></br>
 You have saved the following albums (<%= @albums.size %>):
+<ol>
 <% @albums.each do |album| %>
 <li><%=  album.name %> - <%=  album.artists.first.name%></li>
+</ol>
 <% end %>
 </p>
+
+<p>
+	<%= form_tag({controller: "albums", action: "search"}, method: :post) do %>
+  		<%= text_area_tag(:message, "e.g. Gossip - A Joyful Noise", size: "24x6") %>
+	<% end %>
+</p>
+
 <br></br>
 You have saved the following Playlists (<%= @playlists.size %>):
 <% @playlists.each do |playlist| %>

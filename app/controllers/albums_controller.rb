@@ -20,6 +20,12 @@ class AlbumsController < ApplicationController
 
   protected
 
+  def search
+  	query = params[:message]
+  	@submission = Array.new
+  	@submission.push(query)
+  end
+
   def auth_hash
     request.env['omniauth.auth']
   end
