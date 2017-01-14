@@ -6,7 +6,7 @@
 <br></br>
 You have saved the following albums (<%= @albums.size %>):
 <% @albums.each do |album| %>
-<li><%=  album.name %> - <%=  album.artists.to_s %></li>
+<li><%=  album.name %> - <%=  album.artists.first.name%></li>
 <% end %>
 </p>
 <br></br>
