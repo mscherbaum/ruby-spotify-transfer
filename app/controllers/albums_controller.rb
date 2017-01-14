@@ -1,7 +1,8 @@
 class AlbumsController < ApplicationController
   def show
-  	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-  	@albums = spotify_user.saved_albums
+  	@spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+  	@name = @spotify_user.display_name
+  	@albums = @spotify_user.saved_albums
   	#@albums = RSpotify::Album.search('Gossip - A Joyful Noise')
     #@album = albums.first
   end
