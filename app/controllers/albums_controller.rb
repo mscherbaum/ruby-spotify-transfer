@@ -8,6 +8,13 @@ class AlbumsController < ApplicationController
     else
     	@albums = RSpotify::Album.search('Gossip - A Joyful Noise')
     end
+
+    if spotify_user.playlists.size >0
+    	@playlists = spotify_user.playlists
+    else
+    	@playlists = Array.new
+    end
+
     @user = spotify_user
   end
 
