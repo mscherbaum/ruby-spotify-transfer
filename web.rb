@@ -6,6 +6,6 @@ RSpotify.authenticate(ENV['SPOTIFY_CLIENTID'],ENV['SPOTIFY_SECRET'])
 albums = RSpotify::Album.search('Gossip - A Joyful Noise')
 
 
-get '/' do
+/get '/' do
   "Hello, world #{albums}"
-end
+end/
