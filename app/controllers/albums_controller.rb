@@ -47,8 +47,8 @@ class AlbumsController < ApplicationController
 		comparison_string = result.artists.first.name + " , " + result.name
   		match_percentage = fuzzy.getDistance(search_string,comparison_string)*100
   		logger.debug "match_percentage: #{match_percentage.inspect}"
-  		unless result.images.nil?
-  			result_image = result.images[0].url
+  		unless result.images.[0].nil?
+  			result_image = result.images[0].url 
   			else
   			result_image = ""
   		end
