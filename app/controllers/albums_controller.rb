@@ -45,14 +45,14 @@ class AlbumsController < ApplicationController
 	#logger.debug "This is the result object #{result.inspect}"
 
 	unless result.nil?
-  	match_percentage = fuzzy.getDistance(search_string,result.name.to_s)*100
+  	match_percentage = fuzzy.getDistance(search_string,result.artist.first.name + " , " result.name)*100
   	logger.debug "match_percentage: #{match_percentage.inspect}"
-  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result.name, "percentage"=>match_percentage})
+  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result.artist.first.name + " , " result.name, "percentage"=>match_percentage})
   	else
   	result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0})
   	end
 
-  	logger.debug "This is the result.name #{result_object.inspect}"
+  	logger.debug "This is the result_object #{result_object.inspect}"
   	return result_object
   end
 
