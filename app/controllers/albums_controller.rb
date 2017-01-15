@@ -29,12 +29,11 @@ class AlbumsController < ApplicationController
   	else
   		@submission == ["some text"]
   	end
-  	@match_list = []
-  	#byebug
-  	#for @submission.each do |album|
-  		#found_on_spotify = find_match_album(album)
-  		#@match_list.push(found_on_spotify)
-  	#end
+  	@match_list = []  	
+  	@submission.each do |album|
+  		found_on_spotify = find_match_album(album)
+  		@match_list.push(found_on_spotify)
+  	end
   	logger.debug "This is the @match_list object: #{@match_list.inspect}"
   end
 
