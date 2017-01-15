@@ -47,11 +47,15 @@ class AlbumsController < ApplicationController
 		comparison_string = result.artists.first.name + " , " + result.name
   		match_percentage = fuzzy.getDistance(search_string,comparison_string)*100
   		logger.debug "match_percentage: #{match_percentage.inspect}"
-  		result_object = OpenStruct.new({"search"=>search_string, "result"=>comparison_string, "percentage"=>match_percentage, "id"=>result.id,"image"=>result.images[3].url})
+  		if result.images.size >0
+  			result_image = result.images[0].url
+  		else
+  			result_image = ""
+  		end
+  		result_object = OpenStruct.new({"search"=>search_string, "result"=>comparison_string, "percentage"=>match_percentage, "id"=>result.id,"image"=>result_image})
   	else
   		result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0, "id"=>"","image"=>""})
   	end
-
   	logger.debug "This is the result_object #{result_object.inspect}"
   	return result_object
   end
