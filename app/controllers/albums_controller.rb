@@ -1,4 +1,5 @@
 require 'fuzzystringmatch'
+require 'ostruct'
 class AlbumsController < ApplicationController
   def show
   	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
@@ -27,11 +28,12 @@ class AlbumsController < ApplicationController
   	else
   		@submission == ["some text"]
   	end
+  	@match_list = []
   	for @submission.each do |album|
-  		find_match_album(album)
+  		found_on_spotify = find_match_album(album)
+  		@match_list.push(found_on_spotify)
   	end
-
-  	logger.debug "This is the @submission object: #{@submission.inspect}"
+  	logger.debug "This is the @match_list object: #{@match_list.inspect}"
   end
 
   def find_match_album(search_string)
@@ -42,7 +44,11 @@ class AlbumsController < ApplicationController
   	match_percentage_2 = fuzzy.getDistance(search_string,result.name.join(result.artists.first))
   	logger.debug "match_percentage_1: #{match_percentage_1.inspect}"
   	logger.debug "match_percentage_2: #{match_percentage_2.inspect}"
+  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result, "percentage"=>match_percentage_1})
+  	return result_object
   end
+
+
 protected
   def auth_hash
     request.env['omniauth.auth']

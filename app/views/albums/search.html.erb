@@ -2,8 +2,8 @@
 <br></br>
 You have submitted the following albums (0):
 <ol>
-<% @submission.each do |album| %>
-<li><%= album %> <%= progress_bar(33, :color => 'blue', :rounded => true) %> </li>
+<% @match_list.each do |match_object| %>
+<li><%= match_object.search %> - <%= match_object.result %> <%= progress_bar(match_object.percentage, :color => 'blue', :rounded => true) %> </li>
 <% end %>
 </ol>
 
