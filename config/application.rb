@@ -11,7 +11,6 @@ module RubySpotifyTransfer
     RSpotify.authenticate(ENV['SPOTIFY_CLIENTID'],ENV['SPOTIFY_SECRET'])    
     OmniAuth.config.logger = Rails.logger
     config.logger = Logger.new(STDOUT)
-    config.log_level = :debug
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
