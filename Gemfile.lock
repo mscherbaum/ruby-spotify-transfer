@@ -1,9 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    RubyInline (3.12.4)
-      ZenTest (~> 4.3)
-    ZenTest (4.11.1)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -53,8 +50,6 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     columnize (0.9.0)
-    css3-progress-bar-rails (0.5.0)
-      rails (>= 3.1)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     domain_name (0.5.20161129)
@@ -64,8 +59,6 @@ GEM
     execjs (2.5.2)
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
-    fuzzy-string-match (0.9.7)
-      RubyInline (>= 3.8.6)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hashie (3.4.6)
@@ -194,8 +187,6 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
-  css3-progress-bar-rails
-  fuzzy-string-match
   jbuilder (~> 2.0)
   jquery-rails
   omniauth

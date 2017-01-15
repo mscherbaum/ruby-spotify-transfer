@@ -31,10 +31,7 @@ gem 'thin'
 gem 'omniauth'
 
 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-
-gem 'css3-progress-bar-rails'
-gem 'fuzzy-string-match'
+gem 'byebug'
 
 
 # Use ActiveModel has_secure_password
