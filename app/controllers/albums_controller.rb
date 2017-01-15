@@ -22,11 +22,11 @@ class AlbumsController < ApplicationController
   	query = params[:message]
   	logger.debug "this is the query object: " + query.to_s
   	unless query.nil?
-  		@submission = query.split("\n")
+  		@submission = query.split("\r\n")
   	else
   		@submission == ["some text"]
   	end
-  	logger.debug "This is the @submiision object: #{@submission.inspect}"
+  	logger.debug "This is the @submission object: #{@submission.inspect}"
   end
 
 protected

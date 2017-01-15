@@ -2,7 +2,9 @@
 <br></br>
 You have submitted the following albums (0):
 <ol>
-
+<% @submission.each do |album| %>
+<li><%= album %></li>
+<% end %>
 </ol>
 
 </p>
