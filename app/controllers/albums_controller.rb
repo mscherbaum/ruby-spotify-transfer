@@ -55,11 +55,11 @@ class AlbumsController < ApplicationController
   		end
 
   		unless result.id.nil?
-  			result.id = ""
+  			result_id = result.id
         logger.debug "This is the result.id object #{result.inspect}"
   			#result_id = result.id
   			else
-  				result.id = ""
+  				result_id = ""
   		end
 
   		result_object = OpenStruct.new({"search"=>search_string, "result"=>comparison_string, "percentage"=>match_percentage, "result_id"=>result_id,"image"=>result_image})
