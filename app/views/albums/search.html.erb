@@ -1,11 +1,25 @@
 <p>
 <br></br>
 You have submitted the following albums (0):
-<ol>
-<% @match_list.each do |match_object| %>
-<li><%= match_object.search %> - <%= match_object.result %> <%= progress_bar(match_object.percentage, :color => 'blue', :rounded => true) %> </li>
-<% end %>
-</ol>
-
+<form>
+<table style="width:90%">
+  <tr>
+    <th>Add to Saved</th>
+    <th>Search String</th> 
+    <th>Result Album</th>
+    <th>Match %</th>
+    <th>Result Album Cover</th>
+  </tr>
+  <% @match_list.each do |match_object| %>
+  	<tr>
+	<td><input type="checkbox" name="<%= match_object.id %>"></td>
+	<td><%= match_object.search %></td>
+	<td><%= match_object.result %></td>
+	<td><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %></td>
+	<td><img src="<%= match_object.image %>"></td>
+	</tr>
+<% end %>  
+</table>
+</form>
 </p>
 
