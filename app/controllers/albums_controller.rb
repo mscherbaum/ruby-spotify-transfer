@@ -42,15 +42,14 @@ class AlbumsController < ApplicationController
   	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
 	
 	unless result.nil?
-		logger.debug "This is the result.name #{result.inspect}"
-		logger.debug "This is the result.name #{result.name}"		
+		logger.debug "This is the result.name #{result.inspect}"		
 		comparison_string = result.artists.first.name + " , " + result.name
   		match_percentage = fuzzy.getDistance(search_string,comparison_string)*100
   		logger.debug "match_percentage: #{match_percentage.inspect}"
   		unless result.images[0].nil?
   			logger.debug "This is the image object #{result.images[0].inspect}"
-  			#result_image = result.images[0].url 
-  			result_image = ""
+  			images = HashWithIndifferentAccess.new(result.images[0])
+        result_image = images['url']
   			else
   			result_image = ""
   		end
@@ -63,9 +62,9 @@ class AlbumsController < ApplicationController
   				result.id = ""
   		end
 
-  		result_object = OpenStruct.new({"search"=>search_string, "result"=>comparison_string, "percentage"=>match_percentage, "id"=>result_id,"image"=>result_image})
+  		result_object = OpenStruct.new({"search"=>search_string, "result"=>comparison_string, "percentage"=>match_percentage, "result_id"=>result_id,"image"=>result_image})
   	else
-  		result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0, "id"=>"","image"=>""})
+  		result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0, "result_id"=>"","image"=>""})
   	end
   	logger.debug "This is the result_object #{result_object.inspect}"
   	return result_object
