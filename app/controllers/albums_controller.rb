@@ -1,5 +1,5 @@
-require 'fuzzystringmatch'
-require 'ostruct'
+#require 'fuzzystringmatch'
+#require 'ostruct'
 class AlbumsController < ApplicationController
   def show
   	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
