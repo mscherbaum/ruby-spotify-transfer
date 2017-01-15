@@ -12,11 +12,11 @@ You have submitted the following albums (0):
   </tr>
   <% @match_list.each do |match_object| %>
   	<tr>
-	<td><input type="checkbox" name="<%= match_object.id %>"></td>
+	<td><input type="checkbox" name=""></td>
 	<td><%= match_object.search %></td>
 	<td><%= match_object.result %></td>
 	<td><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %></td>
-	<td><img src="<%= match_object.image %>"></td>
+	<td><img src=""></td>
 	</tr>
 <% end %>  
 </table>
