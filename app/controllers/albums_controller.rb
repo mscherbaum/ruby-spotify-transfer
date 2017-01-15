@@ -42,17 +42,17 @@ class AlbumsController < ApplicationController
   	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
 	
 	logger.debug "This is the result.name #{result.name}"
-	logger.debug "This is the result object #{result.inspect}"
+	#logger.debug "This is the result object #{result.inspect}"
 
 	unless result.nil?
-  	match_percentage_1 = fuzzy.getDistance(result.name.to_s.concat(result.artists.first.name.to_s),search_string)
-  	match_percentage_2 = fuzzy.getDistance(search_string,result.name.to_s)
-  	logger.debug "match_percentage_1: #{match_percentage_1.inspect}"
-  	logger.debug "match_percentage_2: #{match_percentage_2.inspect}"
-  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result.name, "percentage"=>match_percentage_1})
+  	match_percentage = fuzzy.getDistance(search_string,result.name.to_s)*100
+  	logger.debug "match_percentage: #{match_percentage.inspect}"
+  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result.name, "percentage"=>match_percentage})
   	else
   	result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0})
-  	end  	
+  	end
+
+  	logger.debug "This is the result.name #{result_object.inspect}"
   	return result_object
   end
 
