@@ -41,9 +41,12 @@ class AlbumsController < ApplicationController
   	result = RSpotify::Album.search(search_string).first
   	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
 	
+	logger.debug "This is the result.name #{result.name}"
+	logger.debug "This is the result object #{result.inspect}"
+
 	unless result.nil?
   	match_percentage_1 = fuzzy.getDistance(result.name.to_s.concat(result.artists.first.name.to_s),search_string)
-  	match_percentage_2 = fuzzy.getDistance(search_string,result.name.to_s.concat(result.artists.first.name.to_s))
+  	match_percentage_2 = fuzzy.getDistance(search_string,result.name.to_s)
   	logger.debug "match_percentage_1: #{match_percentage_1.inspect}"
   	logger.debug "match_percentage_2: #{match_percentage_2.inspect}"
   	result_object = OpenStruct.new({"search"=>search_string, "result"=>result.name, "percentage"=>match_percentage_1})
