@@ -25,7 +25,7 @@ class AlbumsController < ApplicationController
   	query = params[:message]
   	logger.debug "this is the query object: " + query.to_s
   	unless query.nil?
-  		@submission = query.split("\r")
+  		@submission = query.split("\r\n")
   	else
   		@submission == ["some text"]
   	end
@@ -40,12 +40,16 @@ class AlbumsController < ApplicationController
   def find_match_album(search_string)
   	result = RSpotify::Album.search(search_string).first
   	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
-
+	
+	unless result.nil?
   	match_percentage_1 = fuzzy.getDistance(result.name.join(result.artists.first),search_string)
   	match_percentage_2 = fuzzy.getDistance(search_string,result.name.join(result.artists.first))
   	logger.debug "match_percentage_1: #{match_percentage_1.inspect}"
   	logger.debug "match_percentage_2: #{match_percentage_2.inspect}"
-  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result, "percentage"=>match_percentage_1})
+  	result_object = OpenStruct.new({"search"=>search_string, "result"=>result.name, "percentage"=>match_percentage_1})
+  	else
+  	result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0})
+  	end  	
   	return result_object
   end
 
