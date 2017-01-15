@@ -18,8 +18,6 @@ class AlbumsController < ApplicationController
     @user = spotify_user
   end
 
-  protected
-
   def search
   	query = params[:message]
   	logger.debug "this is the query object: " + query.to_s
@@ -31,6 +29,7 @@ class AlbumsController < ApplicationController
   	logger.debug "This is the @submiision object: #{@submission.inspect}"
   end
 
+protected
   def auth_hash
     request.env['omniauth.auth']
   end
