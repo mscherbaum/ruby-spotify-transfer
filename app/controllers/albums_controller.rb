@@ -1,5 +1,5 @@
-#require 'fuzzystringmatch'
-#require 'ostruct'
+require 'fuzzystringmatch'
+require 'ostruct'
 
 class AlbumsController < ApplicationController
   def show
@@ -25,7 +25,7 @@ class AlbumsController < ApplicationController
   	query = params[:message]
   	logger.debug "this is the query object: " + query.to_s
   	unless query.nil?
-  		@submission = query.split("\r\n")
+  		@submission = query.split("\r")
   	else
   		@submission == ["some text"]
   	end
