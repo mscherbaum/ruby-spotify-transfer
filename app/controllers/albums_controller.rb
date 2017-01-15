@@ -1,3 +1,4 @@
+require 'fuzzystringmatch'
 class AlbumsController < ApplicationController
   def show
   	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
@@ -26,11 +27,26 @@ class AlbumsController < ApplicationController
   	else
   		@submission == ["some text"]
   	end
+  	for @submission.each do |album|
+  		find_match_album(album)
+  	end
+
   	logger.debug "This is the @submission object: #{@submission.inspect}"
   end
 
+  def find_match_album(search_string)
+  	result = RSpotify::Album.search(search_string).first
+  	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
+
+  	match_percentage_1 = fuzzy.getDistance(result.name.join(result.artists.first),search_string)
+  	match_percentage_2 = fuzzy.getDistance(search_string,result.name.join(result.artists.first))
+  	logger.debug "match_percentage_1: #{match_percentage_1.inspect}"
+  	logger.debug "match_percentage_2: #{match_percentage_2.inspect}"
+  end
 protected
   def auth_hash
     request.env['omniauth.auth']
   end
 end
+
+# model 'submitted album,found album,match percentage on string base'

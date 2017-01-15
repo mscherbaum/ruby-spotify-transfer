@@ -3,7 +3,7 @@
 You have submitted the following albums (0):
 <ol>
 <% @submission.each do |album| %>
-<li><%= album %></li>
+<li><%= album %> <%= progress_bar(33, :color => 'blue', :rounded => true) %> </li>
 <% end %>
 </ol>
 
