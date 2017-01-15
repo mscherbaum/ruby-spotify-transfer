@@ -34,6 +34,7 @@ class AlbumsController < ApplicationController
   		found_on_spotify = find_match_album(album)
   		@match_list.push(found_on_spotify)
   	end
+    @match_list = @match_list.sort_by { |k| k["percentage"] }
   	logger.debug "This is the @match_list object: #{@match_list.inspect}"
   end
 

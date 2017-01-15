@@ -15,7 +15,7 @@ You have submitted the following albums (0):
 	<td><div style="width: 50px" ><input type="checkbox" name=""></div></td>
 	<td><div style="width: 150px" ><%= match_object.search %></div></td>
 	<td><div style="width: 150px" ><%= match_object.result %></div></td>
-	<td><div style="width: 250px" ><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %></div></td>
+	<td><div style="width: 250px" ><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %> <%= match_object.percentage %>%</div></td>
 	<td><div style="width: 70px" ><img src="<%= match_object.image %>" height="64" width="64"></div></td>
 	</tr>
 <% end %>  
