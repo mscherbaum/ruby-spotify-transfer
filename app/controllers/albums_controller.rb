@@ -1,5 +1,6 @@
 #require 'fuzzystringmatch'
 #require 'ostruct'
+
 class AlbumsController < ApplicationController
   def show
   	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
@@ -54,5 +55,3 @@ protected
     request.env['omniauth.auth']
   end
 end
-
-# model 'submitted album,found album,match percentage on string base'
