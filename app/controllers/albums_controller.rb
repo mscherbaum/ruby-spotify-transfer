@@ -82,10 +82,11 @@ class AlbumsController < ApplicationController
       found_album = RSpotify::Album.find(album)
       found_albums.push(found_album) unless found_album.nil?
     end
-    logger.debug "Show found albums #{found_albums}"
+    #logger.debug "Show found albums #{found_albums}"
     spotify_user = RSpotify::User.new()
     logger.debug "Print the spotify_user #{spotify_user}"
-    #RSpotify::Album.save_albums!(found_albums)
+    spotify_user.save_albums!(found_albums)
+
   end
 
 protected
