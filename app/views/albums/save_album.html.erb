@@ -1,0 +1,34 @@
+<p>
+<br></br>
+The following albums were saved to Spotify (0):
+<table style="width:90%">
+  <tr>
+    <th><div style="width: 50px" >Add to Saved</div></th>
+    <th><div style="width: 150px" >Search String</div></th> 
+    <th><div style="width: 150px" >Result Album</div></th>
+    <th><div style="width: 250px" >Match %</div></th>
+    <th><div style="width: 70px" >Result Album Cover</div></th>
+  </tr>
+  <% if @match_list %>
+  <% @match_list.each do |match_object| %>
+  	<tr>
+	<td><div style="width: 50px" >
+	
+	<input checked="checked" id="albumDetail_<%= match_object.search %>" name="albumDetail[<%= match_object.id %>]" type="checkbox" value="true" />
+	<td><div style="width: 150px" ><%= match_object.search %></div></td>
+	<td><div style="width: 150px" ><%= match_object.result %></div></td>
+	<td><div style="width: 250px" ><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %> <%= match_object.percentage %>%</div></td>
+	<td><div style="width: 70px" ><img src="<%= match_object.image %>" height="64" width="64"></div></td>
+	</tr>
+	<% end %> 	
+	<% else %>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>	 
+  <% end %>  
+</table>
+
+</p>
+
