@@ -84,8 +84,8 @@ class AlbumsController < ApplicationController
     end
     #logger.debug "Show found albums #{found_albums}"
     spotify_user = RSpotify::User.new()
-    logger.debug "Print the spotify_user #{spotify_user}"
-    spotify_user.save_albums!(found_albums)
+    logger.debug "Print the spotify_user #{spotify_user.inspect}"
+    #spotify_user.save_albums!(found_albums)
 
   end
 
