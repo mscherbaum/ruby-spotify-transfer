@@ -71,6 +71,10 @@ class AlbumsController < ApplicationController
   	return result_object
   end
 
+  def save_album
+    albums_to_save = params[:albumDetail] || {}
+    logger.debug "These are the selected albums #{albums_to_save.inspect}"
+  end
 
 protected
   def auth_hash

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'auth/failure' => redirect('/')
   post '/search' => 'albums#search'
   get '/search' => 'welcome#index'
+  post '/save_album' => 'albums#save_album'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,7 +1,7 @@
 <p>
 <br></br>
 You have submitted the following albums (0):
-<form>
+<%= form_tag({controller: "albums", action: "save_album"}, method: :post) do %>
 <table style="width:90%">
   <tr>
     <th><div style="width: 50px" >Add to Saved</div></th>
@@ -12,7 +12,9 @@ You have submitted the following albums (0):
   </tr>
   <% @match_list.each do |match_object| %>
   	<tr>
-	<td><div style="width: 50px" ><input type="checkbox" name=""></div></td>
+	<td><div style="width: 50px" >
+	
+	<input checked="checked" id="albumDetail_<%= match_object.search %>" name="albumDetail[<%= match_object.id %>]" type="checkbox" value="true" />
 	<td><div style="width: 150px" ><%= match_object.search %></div></td>
 	<td><div style="width: 150px" ><%= match_object.result %></div></td>
 	<td><div style="width: 250px" ><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %> <%= match_object.percentage %>%</div></td>
@@ -20,6 +22,8 @@ You have submitted the following albums (0):
 	</tr>
 <% end %>  
 </table>
+<%= content_tag(:button, "Save Selected Albums", :type=>:submit)%>
+<% end %>
 </form>
 </p>
 
