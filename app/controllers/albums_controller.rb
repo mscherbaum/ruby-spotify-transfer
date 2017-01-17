@@ -75,14 +75,17 @@ class AlbumsController < ApplicationController
       logger.warn "Param #{key}: #{value}"
     end
     albums_to_save = params[:album_Ids] || []
-    logger.debug "These are the selected albums #{albums_to_save.inspect}"
+    #logger.debug "These are the selected albums #{albums_to_save.inspect}"
 
     found_albums = []
     albums_to_save.each do |album|
       found_album = RSpotify::Album.find(album)
       found_albums.push(found_album) unless found_album.nil?
     end
-    RSpotify::Album.save_albums!(found_albums)
+    logger.debug "Show found albums #{found_albums}"
+    spotify_user = RSpotify::User.new()
+    logger.debug "Print the spotify_user #{spotify_user}"
+    #RSpotify::Album.save_albums!(found_albums)
   end
 
 protected
