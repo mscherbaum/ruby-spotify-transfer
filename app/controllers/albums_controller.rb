@@ -4,7 +4,6 @@ require 'ostruct'
 class AlbumsController < ApplicationController
   def show
   	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-    $global_spotify_user = spotify_user
   	user_name = spotify_user.display_name
   	
     if spotify_user.saved_albums.size >0
@@ -84,7 +83,7 @@ class AlbumsController < ApplicationController
       found_albums.push(found_album) unless found_album.nil?
     end
     #logger.debug "Show found albums #{found_albums}"
-    spotify_user = $global_spotify_user    
+    spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     logger.debug "Print the spotify_user #{spotify_user.inspect}"
     spotify_user.save_albums!(found_albums) unless spotify_user.nil?
       
