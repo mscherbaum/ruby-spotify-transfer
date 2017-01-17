@@ -86,8 +86,6 @@ class AlbumsController < ApplicationController
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     logger.debug "Print the spotify_user #{spotify_user.inspect}"
     spotify_user.save_albums!(found_albums) unless spotify_user.nil?
-      
-    end
 
   end
 
