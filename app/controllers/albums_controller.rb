@@ -78,7 +78,7 @@ class AlbumsController < ApplicationController
     logger.debug "These are the selected albums #{albums_to_save.inspect}"
 
     found_albums = []
-    albums_to_save do |album|
+    albums_to_save.each do |album|
       found_album = RSpotify::Album.find(album)
       found_albums.push(found_album) unless found_album.nil?
     end
