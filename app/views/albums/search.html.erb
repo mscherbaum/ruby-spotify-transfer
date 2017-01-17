@@ -14,6 +14,7 @@ You have submitted the following albums (0):
   	<tr>
 	<td><div style="width: 50px" >
   <%= check_box_tag 'album_Ids[]', match_object.id, true -%>
+  <input checked="checked" id="albumDetail_<%= match_object.id %>" name="<%= match_object.id %>" type="checkbox" value="<%= match_object.id %>" />
 	<td><div style="width: 150px" ><%= match_object.search %></div></td>
 	<td><div style="width: 150px" ><%= match_object.result %></div></td>
 	<td><div style="width: 250px" ><%= progress_bar(match_object.percentage, :color => '#17141B', :rounded => true) %> <%= match_object.percentage %>%</div></td>
