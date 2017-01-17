@@ -72,7 +72,9 @@ class AlbumsController < ApplicationController
   end
 
   def save_album
-    logger.debug "These are the params #{params[].inspect}"
+    params.each do |key,value|
+      logger.warn "Param #{key}: #{value}"
+    end
     albums_to_save = params[:albumDetail] || {}
     logger.debug "These are the selected albums #{albums_to_save.inspect}"
   end
