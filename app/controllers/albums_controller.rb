@@ -57,7 +57,7 @@ class AlbumsController < ApplicationController
 
   		unless result.id.nil?
   			result_id = result.id
-        logger.debug "This is the result.id object #{result.inspect}"
+        #logger.debug "This is the result.id object #{result.inspect}"
   			#result_id = result.id
   			else
   				result_id = ""
