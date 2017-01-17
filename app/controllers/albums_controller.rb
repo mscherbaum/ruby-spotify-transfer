@@ -40,8 +40,7 @@ class AlbumsController < ApplicationController
 
   def find_match_album(search_string)
   	result = RSpotify::Album.search(search_string).first
-  	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
-	
+  	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )	
 	unless result.nil?
 		#logger.debug "This is the result.name #{result.inspect}"		
 		comparison_string = result.artists.first.name + " , " + result.name
@@ -75,7 +74,7 @@ class AlbumsController < ApplicationController
     params.each do |key,value|
       logger.warn "Param #{key}: #{value}"
     end
-    albums_to_save = params[:albumDetail] || {}
+    albums_to_save = params[:album_Ids] || []
     logger.debug "These are the selected albums #{albums_to_save.inspect}"
   end
 
