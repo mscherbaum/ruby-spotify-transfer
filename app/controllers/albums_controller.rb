@@ -23,7 +23,7 @@ class AlbumsController < ApplicationController
 
   def search
   	query = params[:message]
-  	logger.debug "this is the query object: " + query.to_s
+  	#logger.debug "this is the query object: " + query.to_s
   	unless query.nil?
   		@submission = query.split("\r\n")
   	else
@@ -43,12 +43,12 @@ class AlbumsController < ApplicationController
   	fuzzy = FuzzyStringMatch::JaroWinkler.create( :pure )
 	
 	unless result.nil?
-		logger.debug "This is the result.name #{result.inspect}"		
+		#logger.debug "This is the result.name #{result.inspect}"		
 		comparison_string = result.artists.first.name + " , " + result.name
   		match_percentage = fuzzy.getDistance(search_string,comparison_string)*100
-  		logger.debug "match_percentage: #{match_percentage.inspect}"
+  		#logger.debug "match_percentage: #{match_percentage.inspect}"
   		unless result.images[0].nil?
-  			logger.debug "This is the image object #{result.images[0].inspect}"
+  			#logger.debug "This is the image object #{result.images[0].inspect}"
   			images = HashWithIndifferentAccess.new(result.images[0])
         result_image = images['url']
   			else
@@ -67,7 +67,7 @@ class AlbumsController < ApplicationController
   	else
   		result_object = OpenStruct.new({"search"=>search_string, "result"=>"No album found", "percentage"=>0, "result_id"=>"","image"=>""})
   	end
-  	logger.debug "This is the result_object #{result_object.inspect}"
+  	#logger.debug "This is the result_object #{result_object.inspect}"
   	return result_object
   end
 
