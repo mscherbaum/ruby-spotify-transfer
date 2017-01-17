@@ -5,7 +5,7 @@ class AlbumsController < ApplicationController
   def show
   	spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
   	user_name = spotify_user.display_name
-    logger.debug "This is the auth_hash #{auth_hash}"
+    session[:spotify_user] = spotify_user.to_hash    
   	
     if spotify_user.saved_albums.size >0
     	@albums = spotify_user.saved_albums
@@ -84,15 +84,11 @@ class AlbumsController < ApplicationController
       found_albums.push(found_album) unless found_album.nil?
     end
     #logger.debug "Show found albums #{found_albums}"
-    logger.debug "This is the auth_hash #{auth_hash}"
-    spotify_user = RSpotify::User.new(auth_hash)
+    spotify_hash = session[:spotify_user]
+    spotify_user = RSpotify::User.new(spotify_hash)
     logger.debug "Print the spotify_user #{spotify_user.inspect}"
     spotify_user.save_albums!(found_albums) unless spotify_user.nil?
 
   end
 
-protected
-  def auth_hash
-    request.env['omniauth.auth']
-  end
 end
